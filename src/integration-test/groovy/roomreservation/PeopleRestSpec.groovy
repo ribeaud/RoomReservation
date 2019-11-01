@@ -1,24 +1,28 @@
-package roomreservation;
+package roomreservation
 
 import geb.spock.GebSpec
-import grails.plugins.rest.client.RestBuilder
-import grails.plugins.rest.client.RestResponse;
 import grails.testing.mixin.integration.Integration
-import spock.lang.Shared;
+import io.micronaut.http.HttpRequest
+import io.micronaut.http.HttpResponse
+import io.micronaut.http.client.HttpClient
+import groovy.json.JsonSlurper
 
 @Integration
 class PeopleRestSpec extends GebSpec {
 
-    @Shared RestBuilder rest = new RestBuilder()
-
     void "Test fetching people created in 'BootStrap.groovy' as JSON"() {
-        when:"Accessing '/people.json'"
-        RestResponse resp = rest.get("http://localhost:${serverPort}/people.json")
+        setup:
+        def client = HttpClient.create(new URL("http://localhost:${serverPort}/")).toBlocking()
+
+        when: "Accessing '/people.json'"
+        HttpRequest request = HttpRequest.GET("/people.json")
+        HttpResponse<String> resp = client.exchange(request, String)
+        def json = new JsonSlurper().parseText resp.body()
 
         then:
-        resp.status == 200
-        resp.json.size() == 2
-        resp.json.find { it.firstName == 'Dierk' && it.lastName == 'König' }
-        resp.json.find { it.firstName == 'Christian' &&  it.lastName == 'Ribeaud' }
+        resp.status.code == 200
+        json.size() == 2
+        json.find { it.firstName == 'Dierk' && it.lastName == 'König' }
+        json.find { it.firstName == 'Christian' && it.lastName == 'Ribeaud' }
     }
 }
