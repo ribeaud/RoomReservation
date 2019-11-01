@@ -71,7 +71,6 @@ dependencies {
     testCompile "org.seleniumhq.selenium:selenium-api:3.14.0"
     testCompile "org.seleniumhq.selenium:selenium-support:3.14.0"
     testRuntime "org.seleniumhq.selenium:selenium-chrome-driver:3.14.0"
-    testRuntime "org.seleniumhq.selenium:selenium-firefox-driver:3.14.0"
 }
 
 bootRun {
@@ -87,14 +86,12 @@ bootRun {
 
 webdriverBinaries {
     chromedriver '2.45.0'
-    geckodriver '0.24.0'
 }
 
 tasks.withType(Test) {
     systemProperty "geb.env", System.getProperty('geb.env')
     systemProperty "geb.build.reportsDir", reporting.file("geb/integrationTest")
     systemProperty "webdriver.chrome.driver", System.getProperty('webdriver.chrome.driver')
-    systemProperty "webdriver.gecko.driver", System.getProperty('webdriver.gecko.driver')
 }
 
 
