@@ -12,31 +12,24 @@
 
         function nextPhoto() {
             if (undefined === photoInfos) {
-                findInterestingImages(); // mutually recursive
+                // TODO: We do NOT have any photo yet.
                 return;
             }
             const photo = photoInfos[photoNumber++];
             if (photoNumber > 10) {
-                pageNumber = pageNumber + 1;
-                photoNumber = 0;
-                findInterestingImages();
+                // TODO: We do NOT have any photo to display anymore (page is over). We have to fetch the next page.
                 return;
             }
             // Possible values for '_<format>.jpg' are '[mstzb]' (t:tiny,s:small,m:medium,b:big,...).
-            const pictureUrl = "http://static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_b.jpg";
+            // TODO: Construct 'pictureUrl'
+            const pictureUrl = undefined;
             document.getElementById("target").innerHTML = "<img src='" + pictureUrl + "'><div> " + photo.title + "</div>";
         }
 
         function findInterestingImages() {
             const url = "https://www.flickr.com/services/rest/?method=flickr.interestingness.getList&per_page=10&page="
                 + pageNumber + "&format=json&nojsoncallback=1&api_key=d5d6d15bb498e649b134170184968b61";
-            fetch(url)
-                .then(resp => resp.json())
-                .then(json => {
-                    photoInfos = json.photos.photo;
-                    nextPhoto();
-                })
-                .catch(err => console.log(err));
+            // TODO: Fetch the photos from URL and store them to photoInfos.
         }
     </script>
 </head>
