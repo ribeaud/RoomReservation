@@ -1,5 +1,8 @@
 package roomreservation
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(Role.USER)
 class BookingController {
 
     static scaffold = Booking

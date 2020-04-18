@@ -2,9 +2,8 @@ package roomreservation
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured("permitAll")
-class PersonController {
+@Secured(Role.ADMIN)
+class UserController {
 
-    static scaffold = Person
-
+    static scaffold = User
 }

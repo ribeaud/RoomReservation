@@ -93,6 +93,8 @@ management:
 
 ---
 hibernate:
+    # To allow bootstrap entries (see discussion at https://github.com/grails/grails-core/issues/11376)
+    allow_update_outside_transaction: true
     cache:
         queries: false
         use_second_level_cache: false

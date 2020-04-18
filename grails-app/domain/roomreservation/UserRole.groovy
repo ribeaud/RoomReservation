@@ -47,7 +47,8 @@ class UserRole implements Serializable {
     }
 
     static UserRole create(User user, Role role, boolean flush = false) {
-        def instance = new UserRole(user: user, role: role)
+        // In production or test, it might already be in the DB
+        def instance = UserRole.findOrCreateWhere(user: user, role: role)
         instance.save(flush: flush)
         instance
     }
