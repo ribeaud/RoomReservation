@@ -24,3 +24,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 // The easiest possibility to open non-annotated controllers
 // grails.plugin.springsecurity.rejectIfNoRule = false
 // grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+
+// For logout functionality
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.logout.afterLogoutUrl = "/"
