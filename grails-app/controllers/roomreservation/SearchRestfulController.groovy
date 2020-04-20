@@ -19,6 +19,9 @@ abstract class SearchRestfulController<T> extends RestfulController<T> {
     def search(String q) {
         if (q) {
             // resource.findAllByNameIlike("%${q}%")
+            // Explanation:
+            //   - 'resource.getAll()' can be shortened as 'resource.all'
+            //   - 'findAll' is a Groovy list method which accepts a Closure (https://www.tutorialspoint.com/groovy/groovy_findall.htm)
             def list = resource.all.findAll {
                 StringUtils.containsIgnoreCase it.name, q
             }
