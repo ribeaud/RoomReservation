@@ -63,6 +63,7 @@ dependencies {
     runtime "javax.xml.bind:jaxb-api:2.3.0"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:3.0.10"
     runtime group: 'org.codehaus.groovy', name: 'groovy-dateutil', version: '2.5.8'
+    runtime 'mysql:mysql-connector-java:8.0.16'
     testCompile "org.grails:grails-gorm-testing-support"
     testCompile "org.mockito:mockito-core"
     testCompile "org.grails:grails-web-testing-support"
