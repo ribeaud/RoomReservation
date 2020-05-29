@@ -98,6 +98,9 @@ tasks.withType(Test) {
     systemProperty "webdriver.gecko.driver", System.getProperty('webdriver.gecko.driver')
 }
 
+bootRun {
+    systemProperties = System.properties
+}
 
 assets {
     minifyJs = true
